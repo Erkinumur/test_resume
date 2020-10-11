@@ -1,13 +1,21 @@
 from django.db import models
 
 
+DEPARTMENT_CHOICES = (
+    ('IT', 'IT'),
+    ('Отдел продаж', 'Отдел продаж'),
+    ('Маркетинг', 'Маркетинг')
+)
+
+
 class Resume(models.Model):
     first_name = models.CharField(max_length=50, verbose_name='Имя')
     last_name = models.CharField(max_length=100, verbose_name='Фамилия')
     patronymic = models.CharField(max_length=100, verbose_name='Отчество')
     number = models.BigIntegerField(verbose_name='Номер телефона')
     email = models.EmailField()
-    department = models.CharField(max_length=50, verbose_name='Направление')
+    department = models.CharField(max_length=50, choices=DEPARTMENT_CHOICES,
+                                  verbose_name='Направление')
     description = models.TextField(verbose_name='Описание')
     experience = models.TextField(verbose_name='Опыт')
 
